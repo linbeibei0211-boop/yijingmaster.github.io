@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>易经数字算命 - 所以</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- 配置Tailwind自定义颜色和字体 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#8B5A2B',      // 木色/棕色作为主色调，体现传统文化感
+                        secondary: '#D2B48C',    // 浅棕色作为辅助色
+                        accent: '#CD853F',       // 秘鲁色作为强调色
+                        light: '#F5F5DC',        // 米色作为浅色背景
+                        dark: '#2F4F4F',         // 深石板灰作为深色文本
+                        vip: '#E67E22'           // 会员专用橙色
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans SC', 'sans-serif'],
+                        serif: ['Noto Serif SC', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- 自定义工具类 -->
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            }
+            .bg-texture {
+                background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%238b5a2b' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            }
+            .hexagon {
+                clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            }
+            .vip-badge {
+                position: relative;
+                overflow: hidden;
+            }
+            .vip-badge::after {
+                content: "会员";
+                position: absolute;
+                top: -15px;
+                right: -15px;
+                width: 70px;
+                height: 70px;
+                background-color: #E67E22;
+                color: white;
+                font-size: 10px;
+                font-weight: bold;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transform: rotate(45deg);
+            }
+        }
+    </style>
+    
+    <!-- 引入中文字体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-light bg-texture min-h-screen font-sans text-dark">
+    <!-- 导航栏 -->
+    <header class="bg-primary/95 text-light shadow-md backdrop-blur-sm sticky top-0 z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fa fa-book text-2xl text-secondary"></i>
+                <h1 class="text-xl md:text-2xl font-serif font-bold">所以</h1>
+            </div>
+            
+            <nav class="hidden md:flex space-x-6">
+                <a href="#" class="hover:text-secondary transition-colors duration-300 font-medium">首页</a>
+                <a href="#about" class="hover:text-secondary transition-colors duration-300">关于易经</a>
+                <a href="#method" class="hover:text-secondary transition-colors duration-300">占卜方法</a>
+                <a href="#faq" class="hover:text-secondary transition-colors duration-300">常见问题</a>
+                <a href="#membership" class="hover:text-secondary transition-colors duration-300 font-medium flex items-center">
+                    <i class="fa fa-diamond mr-1 text-vip"></i> 会员中心
+                </a>
+            </nav>
+            
+            <div class="flex items-center">
+                <div id="user-status" class="hidden md:block mr-4 text-sm">
+                    <span id="status-text">非会员</span>
+                    <span id="remaining-readings" class="ml-2 text-secondary"></span>
+                </div>
+                
+                <button class="md:hidden text-light text-xl" id="menu-toggle">
+                    <i class="fa fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- 移动端菜单 -->
+        <div id="mobile-menu" class="hidden md:hidden bg-primary/95 backdrop-blur-sm">
+            <div class="container mx-auto px-4 py-2 flex flex-col space-y-3">
+                <a href="#" class="py-2 hover:text-secondary transition-colors duration-300">首页</a>
+                <a href="#about" class="py-2 hover:text-secondary transition-colors duration-300">关于易经</a>
+                <a href="#method" class="py-2 hover:text-secondary transition-colors duration-300">占卜方法</a>
+                <a href="#faq" class="py-2 hover:text-secondary transition-colors duration-300">常见问题</a>
+                <a href="#membership" class="py-2 hover:text-secondary transition-colors duration-300 flex items-center">
+                    <i class="fa fa-diamond mr-2 text-vip"></i> 会员中心
+                </a>
+                <div class="py-2 text-sm">
+                    <span id="mobile-status-text">非会员</span>
+                    <span id="mobile-remaining-readings" class="ml-2 text-secondary"></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <!-- 英雄区域 -->
+        <section class="relative rounded-xl overflow-hidden mb-12 shadow-xl">
+            <div class="absolute inset-0 bg-gradient-to-r from-primary/80 to-dark/70 z-10"></div>
+            <img src="https://picsum.photos/id/152/1200/400" alt="古老的易经书籍和占卜工具" class="w-full h-64 md:h-80 object-cover">
+            <div class="absolute inset-0 z-20 flex flex-col justify-center px-6 md:px-12">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-light text-shadow mb-4 max-w-2xl">
+                    易经数字占卜，洞察人生奥秘
+                </h2>
+                <p class="text-light/90 text-lg md:text-xl max-w-xl">
+                    输入三个数字，提出您的疑问，借助古老易经的智慧，指引您的人生方向
+                </p>
+            </div>
+        </section>
+
+        <!-- 占卜表单和结果区域 -->
+        <section class="grid md:grid-cols-12 gap-8 mb-16">
+            <!-- 左侧表单 -->
+            <div class="md:col-span-5 bg-white rounded-xl shadow-lg p-6 md:p-8 transform transition-all duration-300 hover:shadow-xl vip-badge">
+                <h3 class="text-2xl font-serif font-bold text-primary mb-6 text-center">数字占卜</h3>
+                
+                <form id="fortune-form" class="space-y-6">
+                    <div class="space-y-2">
+                        <label for="question" class="block text-dark/80 font-medium">请输入您想询问的问题：</label>
+                        <textarea id="question" rows="3" class="w-full px-4 py-3 border border-secondary/30 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent transition-all" placeholder="例如：我是否应该接受这份工作？" required></textarea>
+                        <p class="text-sm text-dark/60">请清晰具体地描述您的问题，以便获得更准确的指引</p>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <label class="block text-dark/80 font-medium">请输入三个数字（0-100）：</label>
+                        
+                        <div class="grid grid-cols-3 gap-4">
+                            <div>
+                                <input type="number" id="num1" min="0" max="100" class="w-full px-4 py-3 border border-secondary/30 rounded-lg text-center focus:ring-2 focus:ring-accent focus:border-transparent transition-all" required>
+                                <p class="text-xs text-center text-dark/60 mt-1">第一个数字</p>
+                            </div>
+                            
+                            <div>
+                                <input type="number" id="num2" min="0" max="100" class="w-full px-4 py-3 border border-secondary/30 rounded-lg text-center focus:ring-2 focus:ring-accent focus:border-transparent transition-all" required>
+                                <p class="text-xs text-center text-dark/60 mt-1">第二个数字</p>
+                            </div>
+                            
+                            <div>
+                                <input type="number" id="num3" min="0" max="100" class="w-full px-4 py-3 border border-secondary/30 rounded-lg text-center focus:ring-2 focus:ring-accent focus:border-transparent transition-all" required>
+                                <p class="text-xs text-center text-dark/60 mt-1">第三个数字</p>
+                            </div>
+                        </div>
+                        
+                        <p class="text-sm text-dark/60">请静下心来，凭直觉选择三个0-100之间的数字</p>
+                    </div>
+                    
+                    <div class="pt-2">
+                        <button type="submit" class="w-full bg-primary hover:bg-primary/90 text-light font-medium py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center space-x-2">
+                            <i class="fa fa-calculator"></i>
+                            <span>开始占卜</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- 右侧结果 -->
+            <div class="md:col-span-7 bg-white rounded-xl shadow-lg p-6 md:p-8 flex flex-col" id="result-container">
+                <h3 class="text-2xl font-serif font-bold text-primary mb-6 text-center">占卜结果</h3>
+                
+                <div id="initial-message" class="flex-1 flex flex-col items-center justify-center text-center p-4">
+                    <div class="hexagon bg-secondary/10 w-32 h-32 flex items-center justify-center mb-6">
+                        <i class="fa fa-lightbulb-o text-5xl text-primary/70"></i>
+                    </div>
+                    <p class="text-dark/70 text-lg max-w-md">请在左侧输入您的问题和三个数字，点击"开始占卜"按钮，获取易经的智慧指引</p>
+                </div>
+                
+                <div id="result-content" class="flex-1 hidden space-y-6">
+                    <div class="p-4 bg-light/50 rounded-lg border border-secondary/20">
+                        <h4 class="font-medium text-dark/80 mb-2">您的问题：</h4>
+                        <p id="result-question" class="text-dark"></p>
+                    </div>
+                    
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="bg-primary/10 rounded-lg p-4 text-center">
+                            <p class="text-sm text-dark/60 mb-1">第一个数字</p>
+                            <p id="result-num1" class="text-2xl font-bold text-primary"></p>
+                        </div>
+                        <div class="bg-primary/10 rounded-lg p-4 text-center">
+                            <p class="text-sm text-dark/60 mb-1">第二个数字</p>
+                            <p id="result-num2" class="text-2xl font-bold text-primary"></p>
+                        </div>
+                        <div class="bg-primary/10 rounded-lg p-4 text-center">
+                            <p class="text-sm text-dark/60 mb-1">第三个数字</p>
+                            <p id="result-num3" class="text-2xl font-bold text-primary"></p>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-medium text-dark/80 mb-2">对应的卦象：</h4>
+                        <div class="flex items-center justify-center my-4">
+                            <div id="hexagram" class="w-48 h-48 md:w-64 md:h-64"></div>
+                        </div>
+                        <p id="hexagram-name" class="text-center font-serif font-bold text-lg text-primary"></p>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-medium text-dark/80 mb-2">易经指引：</h4>
+                        <div id="interpretation" class="text-dark/90 leading-relaxed"></div>
+                    </div>
+                    
+                    <div class="p-4 bg-accent/10 rounded-lg border border-accent/20">
+                        <h4 class="font-medium text-dark/80 mb-2">启示与建议：</h4>
+                        <p id="advice" class="text-dark/90 italic"></p>
+                    </div>
+                </div>
+                
+                <!-- 次数用尽提示 -->
+                <div id="limit-reached" class="flex-1 hidden flex-col items-center justify-center text-center p-6">
+                    <div class="hexagon bg-vip/10 w-32 h-32 flex items-center justify-center mb-6">
+                        <i class="fa fa-diamond text-5xl text-vip/70"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-dark mb-4">您的免费占卜次数已用尽</h4>
+                    <p class="text-dark/70 mb-6 max-w-md">非会员每半年可免费占卜3次，升级为会员即可享受无限次占卜服务</p>
+                    <a href="#membership" class="bg-vip hover:bg-vip/90 text-white font-medium py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-[1.02]">
+                        立即开通会员 (¥9.9/月)
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 会员中心 -->
+        <section id="membership" class="mb-16">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-serif font-bold text-primary mb-4">会员中心</h2>
+                <div class="w-20 h-1 bg-accent mx-auto rounded-full"></div>
+                <p class="mt-4 text-dark/70 max-w-2xl mx-auto">选择适合您的会员方案，获取更多易经占卜服务</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- 非会员方案 -->
+                <div class="bg-white rounded-xl shadow-md p-6 md:p-8 transition-all duration-300 hover:shadow-lg">
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-serif font-bold text-primary mb-2">非会员</h3>
+                        <p class="text-3xl font-bold text-dark">免费</p>
+                    </div>
+                    
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <i class="fa fa-check text-green-500 mt-1 mr-3"></i>
+                            <span>每半年可免费占卜3次</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-check text-green-500 mt-1 mr-3"></i>
+                            <span>基础卦象解读</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-times text-red-500 mt-1 mr-3"></i>
+                            <span>无高级解读内容</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-times text-red-500 mt-1 mr-3"></i>
+                            <span>无法保存历史记录</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="text-center">
+                        <p class="text-dark/70" id="non-member-info">您当前是非会员状态</p>
+                    </div>
+                </div>
+                
+                <!-- 会员方案 -->
+                <div class="bg-white rounded-xl shadow-md p-6 md:p-8 transition-all duration-300 hover:shadow-lg border-2 border-vip relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-vip text-white text-xs font-bold px-4 py-1 transform rotate-0 translate-x-0 translate-y-0">
+                        推荐
+                    </div>
+                    
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-serif font-bold text-vip mb-2">会员</h3>
+                        <p class="text-3xl font-bold text-dark">¥9.9<span class="text-sm font-normal text-dark/70">/月</span></p>
+                    </div>
+                    
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <i class="fa fa-check text-green-500 mt-1 mr-3"></i>
+                            <span>无限次占卜服务</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-check text-green-500 mt-1 mr-3"></i>
+                            <span>完整卦象深度解读</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-check text-green-500 mt-1 mr-3"></i>
+                            <span>专属运势分析报告</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-check text-green-500 mt-1 mr-3"></i>
+                            <span>保存所有历史记录</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="text-center">
+                        <button id="subscribe-btn" class="w-full bg-vip hover:bg-vip/90 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center">
+                            <i class="fa fa-diamond mr-2"></i>
+                            <span>立即开通会员</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 关于易经 -->
+        <section id="about" class="mb-16">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-serif font-bold text-primary mb-4">关于易经</h2>
+                <div class="w-20 h-1 bg-accent mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-md p-6 md:p-8">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <img src="https://picsum.photos/id/24/600/400" alt="古老的易经书籍" class="rounded-lg shadow-md w-full h-auto object-cover">
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <p class="text-dark/90 leading-relaxed">
+                            《易经》是中国最古老的哲学典籍之一，被誉为"群经之首，大道之源"。它包含了深刻的哲学思想和宇宙观，通过六十四卦和三百八十四爻的变化，揭示了宇宙万物的变化规律。
+                        </p>
+                        <p class="text-dark/90 leading-relaxed">
+                            易经占卜并非简单的预测未来，而是通过卦象的解读，帮助人们认识当前的处境，理解事物发展的趋势，从而做出更明智的决策。它强调"天人合一"的思想，认为人应当顺应自然规律，在变化中寻求平衡与和谐。
+                        </p>
+                        <p class="text-dark/90 leading-relaxed">
+                            我们的数字占卜基于易经的基本原理，将您输入的数字转换为相应的卦象，并结合传统注释进行解读，为您提供富有启发性的指引。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 占卜方法 -->
+        <section id="method" class="mb-16">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-serif font-bold text-primary mb-4">占卜方法</h2>
+                <div class="w-20 h-1 bg-accent mx-auto rounded-full"></div>
+                <p class="mt-4 text-dark/70 max-w-2xl mx-auto">我们的数字占卜方法结合了传统易经的智慧与现代便捷性</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-white rounded-xl shadow-md p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa fa-question-circle text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-primary mb-3">提出问题</h3>
+                    <p class="text-dark/80">
+                        静下心来，思考您想要询问的问题。问题应当具体、明确，并且是您真正关心的事情。
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-md p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa fa-hashtag text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-primary mb-3">选择数字</h3>
+                    <p class="text-dark/80">
+                        凭直觉选择三个0-100之间的数字。这些数字将被转换为易经中的卦象，反映您当前的处境和问题的可能发展。
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-md p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa fa-lightbulb-o text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-primary mb-3">获取指引</h3>
+                    <p class="text-dark/80">
+                        系统会根据您提供的数字生成相应的卦象，并给出基于易经智慧的解读和建议，帮助您洞察问题本质。
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 常见问题 -->
+        <section id="faq" class="mb-16">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-serif font-bold text-primary mb-4">常见问题</h2>
+                <div class="w-20 h-1 bg-accent mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-md p-6 md:p-8 max-w-3xl mx-auto">
+                <div class="space-y-6">
+                    <div class="border-b border-secondary/20 pb-6">
+                        <h3 class="text-lg font-medium text-primary mb-2">占卜结果是否准确？</h3>
+                        <p class="text-dark/80">
+                            易经占卜提供的是一种基于古老智慧的指引和启示，而非绝对的预测。其准确性取决于您提问的清晰度、内心的专注程度以及对结果的理解方式。它更像是一面镜子，帮助您认识自己和当前的处境。
+                        </p>
+                    </div>
+                    
+                    <div class="border-b border-secondary/20 pb-6">
+                        <h3 class="text-lg font-medium text-primary mb-2">会员订阅如何计费？</h3>
+                        <p class="text-dark/80">
+                            会员服务采用月付模式，每月9.9元人民币。订阅后将自动续费，您可以随时在会员中心取消订阅。开通会员后，即可享受无限次占卜等全部会员特权。
+                        </p>
+                    </div>
+                    
+                    <div class="border-b border-secondary/20 pb-6">
+                        <h3 class="text-lg font-medium text-primary mb-2">免费次数如何计算？</h3>
+                        <p class="text-dark/80">
+                            非会员每半年享有3次免费占卜机会，以自然月计算，每6个月重置一次次数。例如1月1日至6月30日为一个周期，7月1日将重置免费次数。
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-medium text-primary mb-2">如何正确理解占卜结果？</h3>
+                        <p class="text-dark/80">
+                            解读结果时，应以开放和反思的心态对待，不要固守字面意思。易经的智慧在于其灵活性和适应性，同样的卦象对不同人、不同情境可能有不同的启示。最重要的是将获得的 insights 与自己的实际情况相结合，做出最适合自己的决定。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-dark text-light/80 py-10">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fa fa-book text-2xl text-secondary"></i>
+                        <h3 class="text-xl font-serif font-bold text-light">所以</h3>
+                    </div>
+                    <p class="mb-4">
+                        以易经智慧为基础，为您提供富有启发性的人生指引，助您在变化中把握方向，在迷茫中寻找答案。
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-light/60 hover:text-secondary transition-colors"><i class="fa fa-weixin text-xl"></i></a>
+                        <a href="#" class="text-light/60 hover:text-secondary transition-colors"><i class="fa fa-weibo text-xl"></i></a>
+                        <a href="#" class="text-light/60 hover:text-secondary transition-colors"><i class="fa fa-qq text-xl"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-medium text-light mb-4">快速链接</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-secondary transition-colors">首页</a></li>
+                        <li><a href="#about" class="hover:text-secondary transition-colors">关于易经</a></li>
+                        <li><a href="#method" class="hover:text-secondary transition-colors">占卜方法</a></li>
+                        <li><a href="#faq" class="hover:text-secondary transition-colors">常见问题</a></li>
+                        <li><a href="#membership" class="hover:text-secondary transition-colors">会员中心</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-medium text-light mb-4">温馨提示</h4>
+                    <p>
+                        本网站提供的占卜结果仅供参考和娱乐，不构成任何决策建议。人生道路的选择最终取决于您自己，命运掌握在自己手中。
+                    </p>
+                </div>
+            </div>
+            
+            <div class="border-t border-light/10 pt-6 text-center text-sm">
+                <p>© 2023 所以 - 易经数字占卜. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 会员订阅模态框 -->
+    <div id="subscription-modal" class="fixed inset-0 bg-dark/50 z-50 hidden items-center justify-center backdrop-blur-sm">
+        <div class="bg-white rounded-xl shadow-xl p-6 md:p-8 max-w-md w-full mx-4 transform transition-all duration-300 scale-95 opacity-0" id="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-serif font-bold text-vip">开通会员</h3>
+                <button id="close-modal" class="text-dark/60 hover:text-dark transition-colors">
+                    <i class="fa fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <div class="mb-6 text-center">
+                <p class="text-3xl font-bold text-dark mb-2">¥9.9<span class="text-sm font-normal text-dark/70">/月</span></p>
+                <p class="text-dark/70">开通后即可享受无限次占卜等全部会员特权</p>
+            </div>
+            
+            <div class="space-y-4 mb-6">
+                <div class="flex items-start">
+                    <i class="fa fa-check text-green-500 mt-1 mr-3"></i>
+                    <span>无限次易经占卜服务</span>
+                </div>
+                <div class="flex items-start">
+                    <i class="fa fa-check text-green-500 mt-1 mr-3"></i>
+                    <span>完整卦象深度解读</span>
+                </div>
+                <div class="flex items-start">
+                    <i class="fa fa-check text-green-500 mt-1 mr-3"></i>
+                    <span>专属运势分析报告</span>
+                </div>
+            </div>
+            
+            <div class="pt-4">
+                <button id="confirm-subscription" class="w-full bg-vip hover:bg-vip/90 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 flex items-center justify-center">
+                    <i class="fa fa-credit-card mr-2"></i>
+                    <span>确认支付 ¥9.9 开通会员</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 用户数据管理
+        const UserData = {
+            // 初始化用户数据
+            init() {
+                const now = new Date();
+                const userData = JSON.parse(localStorage.getItem('fortuneUserData')) || {
+                    isMember: false,
+                    memberExpiry: null,
+                    readings: [],
+                    cycleStart: this.getCycleStart(now)
+                };
+                
+                // 检查会员是否过期
+                if (userData.isMember && userData.memberExpiry && new Date(userData.memberExpiry) < now) {
+                    userData.isMember = false;
+                    userData.memberExpiry = null;
+                }
+                
+                // 检查是否进入新的半年周期
+                if (this.getCycleStart(now) !== userData.cycleStart) {
+                    userData.cycleStart = this.getCycleStart(now);
+                    userData.readings = [];
+                }
+                
+                this.save(userData);
+                return userData;
+            },
+            
+            // 获取当前半年周期的开始日期
+            getCycleStart(date) {
+                const year = date.getFullYear();
+                const month = date.getMonth();
+                const cycleStartMonth = month < 6 ? 0 : 6; // 1-6月为上半年，7-12月为下半年
+                return new Date(year, cycleStartMonth, 1).toISOString().split('T')[0];
+            },
+            
+            // 保存用户数据
+            save(data) {
+                localStorage.setItem('fortuneUserData', JSON.stringify(data));
+            },
+            
+            // 获取用户数据
+            get() {
+                return JSON.parse(localStorage.getItem('fortuneUserData'));
+            },
+            
+            // 记录一次占卜
+            recordReading() {
+                const userData = this.get();
+                userData.readings.push(new Date().toISOString());
+                this.save(userData);
+                return userData;
+            },
+            
+            // 开通会员
+            subscribe(durationMonths = 1) {
+                const userData = this.get();
+                const now = new Date();
+                
+                if (userData.isMember && userData.memberExpiry) {
+                    // 会员有效期延长
+                    const expiry = new Date(userData.memberExpiry);
+                    expiry.setMonth(expiry.getMonth() + durationMonths);
+                    userData.memberExpiry = expiry.toISOString();
+                } else {
+                    // 新开通会员
+                    userData.isMember = true;
+                    const expiry = new Date();
+                    expiry.setMonth(expiry.getMonth() + durationMonths);
+                    userData.memberExpiry = expiry.toISOString();
+                }
+                
+                this.save(userData);
+                return userData;
+            },
+            
+            // 检查是否可以进行占卜
+            canRead() {
+                const userData = this.get();
+                if (userData.isMember) {
+                    return true; // 会员无限次
+                }
+                // 非会员半年最多3次
+                return userData.readings.length < 3;
+            },
+            
+            // 获取剩余免费次数
+            getRemainingReads() {
+                const userData = this.get();
+                if (userData.isMember) {
+                    return '无限次';
+                }
+                return 3 - userData.readings.length;
+            }
+        };
+        
+        // 初始化用户数据
+        let userData = UserData.init();
+        updateUserStatus();
+        
+        // 更新用户状态显示
+        function updateUserStatus() {
+            const isMember = userData.isMember;
+            const remaining = UserData.getRemainingReads();
+            
+            document.getElementById('status-text').textContent = isMember ? '会员' : '非会员';
+            document.getElementById('mobile-status-text').textContent = isMember ? '会员' : '非会员';
+            document.getElementById('remaining-readings').textContent = `剩余: ${remaining}`;
+            document.getElementById('mobile-remaining-readings').textContent = `剩余: ${remaining}`;
+            
+            if (isMember) {
+                document.getElementById('status-text').classList.add('text-vip');
+                document.getElementById('mobile-status-text').classList.add('text-vip');
+                document.getElementById('non-member-info').textContent = '升级为会员可享受更多特权';
+            } else {
+                document.getElementById('status-text').classList.remove('text-vip');
+                document.getElementById('mobile-status-text').classList.remove('text-vip');
+                document.getElementById('non-member-info').textContent = `您当前是非会员状态，剩余${remaining}次占卜机会`;
+            }
+        }
+        
+        // 移动端菜单切换
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // 关闭移动端菜单
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            });
+        });
+        
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('py-2');
+                header.classList.remove('py-3');
+            } else {
+                header.classList.add('py-3');
+                header.classList.remove('py-2');
+            }
+        });
+        
+        // 会员订阅模态框
+        const modal = document.getElementById('subscription-modal');
+        const modalContent = document.getElementById('modal-content');
+        
+        document.getElementById('subscribe-btn').addEventListener('click', function() {
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                modalContent.classList.remove('scale-95', 'opacity-0');
+                modalContent.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        });
+        
+        function closeModal() {
+            modalContent.classList.remove('scale-100', 'opacity-100');
+            modalContent.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+            }, 300);
+        }
+        
+        document.getElementById('close-modal').addEventListener('click', closeModal);
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+        
+        // 确认订阅
+        document.getElementById('confirm-subscription').addEventListener('click', function() {
+            // 在实际应用中，这里会调用支付接口
+            // 这里仅做模拟
+            userData = UserData.subscribe();
+            updateUserStatus();
+            
+            // 显示成功消息
+            const originalText = this.innerHTML;
+            this.innerHTML = '<i class="fa fa-check mr-2"></i><span>开通成功！</span>';
+            this.classList.remove('bg-vip', 'hover:bg-vip/90');
+            this.classList.add('bg-green-500', 'hover:bg-green-600');
+            
+            setTimeout(() => {
+                closeModal();
+                
+                // 重置按钮状态
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                    this.classList.remove('bg-green-500', 'hover:bg-green-600');
+                    this.classList.add('bg-vip', 'hover:bg-vip/90');
+                }, 300);
+            }, 1500);
+        });
+        
+        // 易经卦象和解释数据
+        const hexagrams = [
+            {
+                name: "乾为天",
+                interpretation: "乾卦象征天，代表刚健、进取、成功。此时正值发展的鼎盛时期，一切顺利，但也需保持谦逊，不可骄傲自满。如同天行健，君子以自强不息。",
+                advice: "把握当前的有利时机，积极进取，但也要注意适度，不可过度扩张。保持警惕，居安思危，方能长久保持成功。"
+            },
+            {
+                name: "坤为地",
+                interpretation: "坤卦象征地，代表柔顺、包容、厚德载物。此时应采取包容和顺应的态度，注重积累和稳定，而非强行进取。",
+                advice: "培养自己的包容心和耐心，默默积累实力，等待合适的时机。与他人保持良好的合作关系，互相支持，共同发展。"
+            },
+            {
+                name: "水雷屯",
+                interpretation: "屯卦象征初生，如同草木萌芽，充满生机但也脆弱。此时可能面临困难和阻碍，但只要坚持下去，就能突破困境。",
+                advice: "面对困难不要退缩，保持信心和毅力。从小处着手，逐步解决问题，积累经验和实力。寻求他人的帮助，共同度过难关。"
+            },
+            {
+                name: "山水蒙",
+                interpretation: "蒙卦象征启蒙，如同孩童需要教育和引导。此时可能处于迷茫或知识不足的状态，需要学习和请教他人。",
+                advice: "保持谦逊好学的态度，主动寻求知识和指导。不要急于行动，先打好基础，明确方向。对于他人的建议要善于倾听和吸收。"
+            },
+            {
+                name: "水天需",
+                interpretation: "需卦象征等待，如同在雨中等待时机。此时不宜急躁行动，而应耐心等待有利时机的到来。",
+                advice: "学会等待，不要强求。在等待期间做好准备，充实自己。保持警惕，一旦时机成熟，就要果断行动。"
+            },
+            {
+                name: "天水讼",
+                interpretation: "讼卦象征争执，可能面临纠纷或冲突。此时应保持冷静，避免激化矛盾，寻求和平解决的方式。",
+                advice: "尽量避免争执，采取退让的态度。如果无法避免，要保持理性，寻求公正的解决途径。反思自身是否有不当之处，避免类似问题再次发生。"
+            },
+            {
+                name: "地水师",
+                interpretation: "师卦象征军队，代表有组织的行动或团队合作。此时需要团结一心，共同面对挑战，听从指挥。",
+                advice: "发挥团队的力量，相互配合，共同完成目标。尊重权威，听从指导，但也要保持独立思考。注意内部团结，避免分裂。"
+            },
+            {
+                name: "水地比",
+                interpretation: "比卦象征亲密比辅，代表人际关系和谐，互相帮助。此时有利于建立良好的合作关系，共同发展。",
+                advice: "珍惜现有的人际关系，真诚对待他人。主动帮助他人，也乐于接受他人的帮助。在合作中保持诚信，实现共赢。"
+            },
+            {
+                name: "风天小畜",
+                interpretation: "小畜卦象征小有积蓄，如同初步积累了一定的力量。此时不宜大举行动，而应继续积累，稳步发展。",
+                advice: "保持稳健的态度，不要急于扩张。继续积累实力和资源，为未来的发展打下基础。注意节俭，合理规划资源。"
+            },
+            {
+                name: "天泽履",
+                interpretation: "履卦象征履行，代表行动和实践。此时需要谨慎行事，遵循正道，注重细节和礼仪。",
+                advice: "行动前要深思熟虑，制定周密的计划。注重礼仪和规矩，尊重他人。在实践中不断完善自己，积累经验。"
+            },
+            {
+                name: "地天泰",
+                interpretation: "泰卦象征通泰，代表顺利、和谐的局面。此时天地相交，万物生长，一切都处于有利的状态。",
+                advice: "珍惜当前的良好局面，抓住机遇发展自己。保持谦虚谨慎的态度，不可骄傲自满。与他人保持良好的沟通和合作。"
+            },
+            {
+                name: "天地否",
+                interpretation: "否卦象征闭塞，代表困难、不顺的时期。此时天地不交，万物不生，可能面临各种阻碍。",
+                advice: "保持耐心，不要急于求成。收缩自己的力量，做好防守。反思自身的问题，等待时机转变。保持乐观的心态，相信困境终将过去。"
+            },
+            {
+                name: "天火同人",
+                interpretation: "同人卦象征同心协力，代表团结和合作。此时有利于聚集众人的力量，共同完成目标。",
+                advice: "积极与他人合作，建立共识。保持开放的心态，接纳不同的意见。在团队中发挥自己的优势，同时尊重他人的贡献。"
+            },
+            {
+                name: "火天大有",
+                interpretation: "大有卦象征大有收获，代表成功和富足。此时事业顺利，收获丰厚，但也需保持谦逊。",
+                advice: "珍惜所获得的成果，感恩帮助过自己的人。合理运用资源，不要浪费。保持低调，避免引起他人的嫉妒。用自己的财富和能力帮助他人。"
+            },
+            {
+                name: "地山谦",
+                interpretation: "谦卦象征谦逊，代表谦虚谨慎的态度。此时无论处于顺境还是逆境，保持谦逊都是有益的。",
+                advice: "保持谦虚的态度，尊重他人。即使取得成就也不骄傲，不断学习和进步。乐于助人，不计较个人得失。谦逊使人进步，也能赢得他人的尊重。"
+            },
+            {
+                name: "雷地豫",
+                interpretation: "豫卦象征愉悦，代表喜悦和顺利。此时心情愉快，事情进展顺利，是享受成果的时期。",
+                advice: "享受当前的快乐，但不要过度放纵。与他人分享喜悦，增进彼此的感情。在顺境中也要保持警惕，为未来可能的变化做好准备。"
+            }
+        ];
+        
+        // 生成卦象SVG
+        function generateHexagramSVG(num1, num2, num3) {
+            // 处理0-100的数字，将其转换为适合生成卦象的数值
+            const normalizeNum = (num) => (num % 9) + 1;
+            
+            // 根据三个数字生成6爻（每个数字生成2爻）
+            const lines = [];
+            [normalizeNum(num1), normalizeNum(num2), normalizeNum(num3)].forEach(num => {
+                // 生成阳爻或阴爻
+                lines.push(num % 2 === 1 ? '阳' : '阴');
+                // 生成变爻（是否为变爻）
+                lines.push(num % 3 === 0 ? '变' : (num % 2 === 1 ? '阳' : '阴'));
+            });
+            
+            // 创建SVG
+            let svg = `<svg width="100%" height="100%" viewBox="0 0 200 240">`;
+            
+            // 绘制6条爻线
+            lines.forEach((line, index) => {
+                const y = 40 + index * 30;
+                const isYang = line === '阳' || line === '变';
+                const isChanging = line === '变';
+                
+                // 爻线颜色
+                const color = isChanging ? '#CD853F' : '#8B5A2B';
+                // 爻线粗细
+                const strokeWidth = isChanging ? 3 : 2;
+                
+                if (isYang) {
+                    // 阳爻
+                    svg += `<line x1="40" y1="${y}" x2="160" y2="${y}" stroke="${color}" stroke-width="${strokeWidth}" />`;
+                } else {
+                    // 阴爻
+                    svg += `<line x1="40" y1="${y}" x2="90" y2="${y}" stroke="${color}" stroke-width="${strokeWidth}" />`;
+                    svg += `<line x1="110" y1="${y}" x2="160" y2="${y}" stroke="${color}" stroke-width="${strokeWidth}" />`;
+                }
+                
+                // 如果是变爻，添加标记
+                if (isChanging) {
+                    svg += `<circle cx="100" cy="${y}" r="5" fill="${color}" />`;
+                }
+            });
+            
+            svg += `</svg>`;
+            return svg;
+        }
+        
+        // 处理表单提交
+        document.getElementById('fortune-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // 检查是否可以占卜
+            if (!UserData.canRead()) {
+                // 次数用尽，显示提示
+                document.getElementById('initial-message').classList.add('hidden');
+                document.getElementById('result-content').classList.add('hidden');
+                document.getElementById('limit-reached').classList.remove('hidden');
+                return;
+            }
+            
+            // 记录占卜次数
+            userData = UserData.recordReading();
+            updateUserStatus();
+            
+            // 获取输入值
+            const question = document.getElementById('question').value;
+            const num1 = parseInt(document.getElementById('num1').value);
+            const num2 = parseInt(document.getElementById('num2').value);
+            const num3 = parseInt(document.getElementById('num3').value);
+            
+            // 显示结果区域，隐藏初始消息和次数用尽提示
+            document.getElementById('initial-message').classList.add('hidden');
+            document.getElementById('limit-reached').classList.add('hidden');
+            document.getElementById('result-content').classList.remove('hidden');
+            
+            // 填充结果
+            document.getElementById('result-question').textContent = question;
+            document.getElementById('result-num1').textContent = num1;
+            document.getElementById('result-num2').textContent = num2;
+            document.getElementById('result-num3').textContent = num3;
+            
+            // 生成卦象 - 处理0-100的数字范围
+            const total = (num1 % 16) + (num2 % 16) + (num3 % 16);
+            const hexagramIndex = total % hexagrams.length; // 确保在0-15之间
+            const hexagram = hexagrams[hexagramIndex];
+            
+            // 显示卦象和解释
+            document.getElementById('hexagram').innerHTML = generateHexagramSVG(num1, num2, num3);
+            document.getElementById('hexagram-name').textContent = hexagram.name;
+            document.getElementById('interpretation').textContent = hexagram.interpretation;
+            document.getElementById('advice').textContent = hexagram.advice;
+            
+            // 滚动到结果区域（移动端）
+            if (window.innerWidth < 768) {
+                document.getElementById('result-container').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    </script>
+</body>
+</html>
